@@ -1,0 +1,152 @@
+/* Some reasonable resets */
+
+html{
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+button{
+    border: none;
+    background: transparent;
+    padding: 0.4em 0.8em;
+}
+
+/* Body styles to properly positionthe appContainer */
+body{
+    /* Select appropriate background for this */
+    /*  */
+
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+
+    /* Add variable padding */
+    /*  */
+    padding: 40px 0;
+}
+
+/* appContainer styles */
+.appContainer{
+    /* Making responsive width */
+    min-width: min(500px, 90vw);
+    width: 60vw;
+    max-width: 800px;
+
+    /* Select appropriate background for this */
+    /*  */
+    
+    padding: 20px 30px;
+    border-radius: 16px;
+
+    /* Select apropriate box-shadow for this */
+    /*  */
+    box-shadow: 0 0 4px 5px rgb(121, 121, 121);
+}
+
+/* Input field styles */
+
+/* Styles for container of the input */
+.inputField{
+    /* Select appropriate background for this */
+    /*  */
+    background-color: lightgray;
+
+    border-radius: 8px;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Input box styles */
+.inputField__input{
+    background-color: transparent;
+    width:90%;
+    border:none;
+    height: 100%;
+    line-height: 4rem;
+    font-size: 2rem;
+}
+.inputField__input:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Inout placeholder image */
+.inputField img {
+    height: 40%;
+    margin: 0 16px;
+}
+
+/* Task options  */
+.taskOptions{
+    margin:10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.taskOptions button{
+    padding: 0;
+    text-align: center;
+}
+
+.taskOptions button:hover{
+    cursor: pointer;
+}
+
+/* complete All Tasks button styles */
+.taskOptions__completeAllTasks{
+    font-size: 0.8rem;
+    color: rgb(37, 37, 37);
+    transition: color 300ms ease-in-out;
+}
+
+.taskOptions__completeAllTasks img{
+    /* Add appropriate filters for img */
+    /*  */
+    filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
+    height:0.68rem;
+    margin:0 14px;
+    transition: height 300ms ease-in-out, filter 300ms ease-in-out;
+}
+
+.taskOptions__completeAllTasks:hover{
+    font-size: 0.8rem;
+    color: rgb(104, 201, 136);
+}
+
+.taskOptions__completeAllTasks:hover img{
+    /* Add appropriate filters for img */
+    /*  */
+    filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
+    height:0.7rem;
+    margin:0 14px;
+}
+
+
+/* Utilities (Adding at bottom to ensure they override other styles)*/
+.smallFontStyles{
+    font-size: 0.8rem;
+    color: rgb(167, 167, 167);
+}
+
+.selected{
+    font-size: 0.85rem;
+    color: rgb(37, 37, 37);
+}

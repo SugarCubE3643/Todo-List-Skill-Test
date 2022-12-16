@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Website title -->
+    <title>Todo List</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- To Do List app container -->
+    <div class="appcontainer">
+
+        <!-- Input field for adding a new task -->
+        <div class="appContainer">
+
+            <!-- Input feild for adding a new task -->
+            <section class="inputField">
+                <img src="./images/listIcon.png" alt="Task">
+                <input class="inputField__input" type="text">
+                <img class="inputField__add" src="./images/plusIcon.png" alt="Add">
+            </section>
+    
+            <!-- Extra features for completing all tasks or clearing all tasks -->
+            <section class="taskOptions smallFontStyles">
+                <button class="taskOptions__completeAllTasks"> <img src="./images/doubleTickIcon.png" alt=""> Complete all tasks</button>
+                <button class="taskOptions__clearCompletedTasks smallFontStyles">Clear completed</button>
+            </section>
+            
+            <hr>
+    
+            <!-- Tasks list section -->
+            <section class="taskList">
+            </section>
+            
+            <hr>
+            
+            <!-- Tasks statistics -->
+            <section class="taskStats">
+                <span class="taskStats__stat smallFontStyles">                
+                    <span class="stat__tasksLeft selected">0</span>
+                    <span >tasks left</span>
+                </span>
+                <button class="taskStats__all smallFontStyles selected">All</button>
+                <button class="taskStats__incomplete smallFontStyles">Incomplete</button>
+                <button class="taskStats__completed smallFontStyles">Completed</button>
+            </section>
+        </div>
+    </div>    
+</body>
+</html>
