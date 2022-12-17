@@ -27,7 +27,10 @@ const toDoListApp = (() => {
     function addTask(task) {
         if(task){
             tasks.push(task);            
-            addTaskToDOM(task);
+
+            if(incompleteTasksButton.classList.contains('selected') || allTasksButton.classList.contains('selected')){
+                addTaskToDOM(task);
+            }
 
             ++incompleteTasksCount;
         }
@@ -37,7 +40,7 @@ const toDoListApp = (() => {
         li.setAttribute('data-id', task.id);
         li.innerHTML = `
             <input type="checkbox" id="${task.id}"  class="check-task" ${task.done ? 'checked': ''}>
-            <label for="${task.id}">${task.text}</label>
+            <label for="${task.id}" class ="${task.done ? 'completed': ''}">${task.text}</label>
             <img src="./images/crossIcon.png" class="delete-task" data-id="${task.id}" alt="Del">    
         `;
 

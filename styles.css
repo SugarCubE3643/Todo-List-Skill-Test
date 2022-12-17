@@ -61,6 +61,11 @@ hr{
     color: var(--selectedColor);
 }
 
+.completed{
+    color: var(--placeholderColor);
+    text-decoration: line-through;
+}
+
 
 /* Body styles to adequately position the appContainer */
 body{
@@ -80,8 +85,12 @@ body{
     width: 60vw;
     max-width: 800px;
     
+    height: fit-content;
+
     padding: 2rem 2rem 0.1px 2rem;
     border-radius: 16px;
+
+    transition: height 2s;
 
     box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
 }
@@ -106,6 +115,7 @@ body{
     box-shadow: none;
 }
 
+
 /* Styling the parent container of input when it is focused */
 .inputField:has(>.inputField__input:focus){
     box-shadow: 0.3rem 0.3rem 0.6rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 0.5rem var(--white);
@@ -122,17 +132,31 @@ body{
     color: var(--inputColor);
 }
 
+
 /* Input placeholder styles */
 .inputField__input::placeholder{
     color: var(--placeholderColor);
 }
 
-/* Inout placeholder image */
+/* Input placeholder image and add button */
 .inputField img {
     height: 40%;
     margin: 0 16px;
 
     filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
+}
+
+.inputField__add{
+    transition: all 200ms ease-in-out;
+}
+
+.inputField__add:hover{
+    transform: scale(1.14);
+    cursor: pointer;
+}
+
+.inputField__add:active{
+    transform: scale(1);
 }
 
 /* Task options  */
@@ -169,19 +193,13 @@ body{
 }
 
 .taskOptions__completeAllTasks img{
-    /* Add appropriate filters for img */
-    /*  */
     filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
     height:0.68rem;
     margin:0 14px;
     transition: height 300ms ease-in-out, filter 300ms ease-in-out;
 }
 
-
-
 .taskOptions__completeAllTasks:hover img{
-    /* Add appropriate filters for img */
-    /*  */
     filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
     height:0.7rem;
     margin:0 14px;
@@ -196,6 +214,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap:max(10px, 0.4em);
 }
 
 .taskList li{
@@ -203,14 +222,58 @@ body{
     flex-direction: row;
     align-items: center;
     gap: max(10px, 0.4em);
-    height: 2rem;
+    height: 3rem;
+    font-size: 1.4rem;
+
+    border-radius: 8px;
+    padding: 0.2em 0.4em;
+    box-shadow: 0.2rem 0.2rem 0.3rem var(--lightGreyBorderColor1), -0.1rem -0.1rem 0.2rem var(--white);
 }
 
+.taskList li:has( > .completed){
+    box-shadow: none;
+}   
+
+
 .taskList li input[type="checkbox"]{
-    
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
+    border-radius: 6px;
+
+    display: grid;
+    place-content: center;
 }
+
+.taskList li input[type="checkbox"]::before{
+    content: "";
+    height: 0.8rem;
+    width: 0.8rem;
+
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transition: transform 110ms ease-in-out;
+    background-color: var(--baseColor);
+}
+
+.taskList li input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+
 .taskList li img{
-    height: 60%;
+    visibility: hidden;
+    filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
+} 
+
+.taskList li:hover img{
+    visibility: visible;
+    cursor: pointer;
+} 
+
+.taskList li img{
+    height: 70%;
     margin-left: auto;
 }
 
