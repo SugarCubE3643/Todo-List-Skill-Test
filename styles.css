@@ -12,7 +12,7 @@
     --completeAllHover:rgb(104, 201, 136);
 }
 
-/* Some reasonable resets */
+/* Some reasonable resets and changes to deafult css*/
 html{
     box-sizing: border-box;
     height: 100%;
@@ -26,41 +26,48 @@ html{
     margin: 0;
     padding: 0;
 
+    /* Setting the font family for all elements */
     font-family: sans-serif;
 }
 
+/* Removing default list styles */
 li {
     list-style: none;
 }
 
+/* Removing default button styles and adding responsive padding */
 button{
     border: none;
     background: transparent;
     padding: 0.4em 0.8em;
 }
 
+
+/* Custom hr tag style according to the theme of the project */
 hr{ 
     display: block; 
     height: 2px;
     border: 0; 
     
-    /* Select appropriate border for this */
-    /*  */
     border-top: 2px solid var(--lightGreyBorderColor1);
     padding: 0; 
 }
 
 /* Utilities */
+
+/* Making custom small font styles for buttons and text */
 .smallFontStyles{
     font-size: 0.8rem;
     color: var(--featuresColor);
 }
 
+/* Styles for selected task statistic option */
 .selected{
     font-size: 0.85rem;
     color: var(--selectedColor);
 }
 
+/* Styles for the tasks which are marked completed  */
 .completed{
     color: var(--placeholderColor);
     text-decoration: line-through;
@@ -74,23 +81,19 @@ body{
     align-items: flex-start;
     justify-content: center;
 
+    /* Padding will not go below 20px for small screen sizes */
     padding: max(2vw, 20px) 0;
 }
 
 /* appContainer styles */
 .appContainer{
-
     /* Making responsive width */
     min-width: min(500px, 90vw);
     width: 60vw;
     max-width: 800px;
-    
-    height: fit-content;
 
     padding: 2rem 2rem 0.1px 2rem;
     border-radius: 16px;
-
-    transition: height 2s;
 
     box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
 }
@@ -102,7 +105,7 @@ body{
     box-shadow: inset 0.2rem 0.2rem 0.5rem var(--lightGreyBorderColor1), inset -0.2rem -0.2rem 0.5rem var(--white);
 
     border-radius: 8px;
-    height: 4rem;
+    height: min(4rem, 10vw);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -127,8 +130,8 @@ body{
     width:90%;
     border:none;
     height: 100%;
-    line-height: 4rem;
-    font-size: 1.6rem;
+    line-height: min(4rem, 10vw);
+    font-size: min(1.6rem, 4vw);
     color: var(--inputColor);
 }
 
@@ -222,8 +225,8 @@ body{
     flex-direction: row;
     align-items: center;
     gap: max(10px, 0.4em);
-    height: 3rem;
-    font-size: 1.4rem;
+    height: min(3rem,7.5vw);
+    font-size: min(1.4rem,3.5vw);
 
     border-radius: 8px;
     padding: 0.2em 0.4em;
@@ -237,8 +240,8 @@ body{
 
 .taskList li input[type="checkbox"]{
     appearance: none;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: min(1.4rem,3.5vw);
+    height: min(1.4rem,3.5vw);
     box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
     border-radius: 6px;
 
@@ -248,8 +251,8 @@ body{
 
 .taskList li input[type="checkbox"]::before{
     content: "";
-    height: 0.8rem;
-    width: 0.8rem;
+    height: min(0.8rem,2vw);
+    width: min(0.8rem,2vw);
 
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     transform: scale(0);
@@ -286,5 +289,3 @@ body{
 .taskStats > .smallFontStyles{
     transition: all 180ms ease-in-out;
 }
-
-
