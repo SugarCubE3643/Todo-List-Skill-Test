@@ -10,6 +10,7 @@
     --baseColorDark: rgb(91, 14, 235);
     --selectedColor: rgb(4, 46, 152);
     --completeAllHover: rgb(104, 201, 136);
+    --clearCompletedHover: rgb(201, 104, 104);
 }
 
 /* Some reasonable resets and changes to deafult css*/
@@ -106,7 +107,6 @@ body {
     border-radius: 16px;
 
     -webkit-box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
-
     box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
 }
 
@@ -179,16 +179,17 @@ body {
     color: var(--placeholderColor);
 }
 
-/* Input placeholder image and add button */
+/* Common CSS for input placeholder image and add button */
 .inputField img {
     height: 40%;
     margin: 0 16px;
 
     -webkit-filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
-
     filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
 }
 
+
+/* hover and active effects on input add button */
 .inputField__add {
     -webkit-transition: all 200ms ease-in-out;
     -o-transition: all 200ms ease-in-out;
@@ -208,7 +209,7 @@ body {
     transform: scale(1);
 }
 
-/* Task options  */
+/* Task options styles*/
 .taskOptions {
     margin: 14px 0;
     display: -webkit-box;
@@ -223,6 +224,7 @@ body {
     justify-content: space-between;
 }
 
+/* Common css for taskOptions buttons */
 .taskOptions button {
     padding: 0;
     text-align: center;
@@ -254,11 +256,37 @@ body {
     transform: scale(1);
 }
 
+
+/* clear completed tasks styles */
+.taskOptions__clearCompletedTasks {
+    -webkit-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+/* Hover state of clear completed tasks button */
+.taskOptions__clearCompletedTasks:hover {
+    -webkit-transform: scale(1.12);
+    -ms-transform: scale(1.12);
+    transform: scale(1.12);
+    color: var(--clearCompletedHover);
+}
+
+/* Active state of clear completed tasks button */
+.taskOptions__clearCompletedTasks:active {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+/* Added styles for the icon in conplete all tasks button separately */
 .taskOptions__completeAllTasks img {
-    -webkit-filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
-    filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
     height: 0.68rem;
     margin: 0 14px;
+
+    -webkit-filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
+    filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
+
     -webkit-transition: height 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
     transition: height 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
     -o-transition: height 300ms ease-in-out, filter 300ms ease-in-out;
@@ -269,6 +297,7 @@ body {
 .taskOptions__completeAllTasks:hover img {
     -webkit-filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
     filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
+
     height: 0.7rem;
     margin: 0 14px;
 }
@@ -279,105 +308,119 @@ body {
     margin: 1.2rem 0;
 }
 
+/* Styles for the list of tasks */
 .taskList {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+
     gap: max(10px, 0.4em);
 }
 
+/* Style for each task as a list item */
 .taskList li {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
+
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+
     gap: max(10px, 0.4em);
     height: min(3rem, 7.5vw);
     font-size: min(1.4rem, 3.5vw);
-
     border-radius: 8px;
     padding: 0.2em 0.4em;
+
     -webkit-box-shadow: 0.2rem 0.2rem 0.3rem var(--lightGreyBorderColor1), -0.1rem -0.1rem 0.2rem var(--white);
     box-shadow: 0.2rem 0.2rem 0.3rem var(--lightGreyBorderColor1), -0.1rem -0.1rem 0.2rem var(--white);
 }
 
+/* Removing box shadown of task when it's completed */
 .taskList li:has(> .completed) {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-
+/* Task checkbox styles */
 .taskList li input[type="checkbox"] {
+    /* Removing default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+
+    /* Setting dimensions */
     width: min(1.4rem, 3.5vw);
     height: min(1.4rem, 3.5vw);
+
     -webkit-box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
     box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
     border-radius: 6px;
 
     display: -ms-grid;
-
     display: grid;
     place-content: center;
 }
 
+/* Styles for the tick mark inside checkbox */
 .taskList li input[type="checkbox"]::before {
     content: "";
     height: min(0.8rem, 2vw);
     width: min(0.8rem, 2vw);
 
     -webkit-clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
+
     -webkit-transition: -webkit-transform 110ms ease-in-out;
     transition: -webkit-transform 110ms ease-in-out;
     -o-transition: transform 110ms ease-in-out;
     transition: transform 110ms ease-in-out;
     transition: transform 110ms ease-in-out, -webkit-transform 110ms ease-in-out;
+
     background-color: var(--baseColor);
 }
 
+/* Styles for the tick mark inside checkbox in checked state*/
 .taskList li input[type="checkbox"]:checked::before {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
 }
 
-
+/* Styles for the delete button */
 .taskList li img {
+    height: 70%;
+    margin-left: auto;
     visibility: hidden;
+
     -webkit-filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
     filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
 }
 
+/* Making delete button visible only on hover */
 .taskList li:hover img {
     visibility: visible;
     cursor: pointer;
 }
-
-.taskList li img {
-    height: 70%;
-    margin-left: auto;
-}
-
 
 /* Task Stat styles */
 .taskStats {
@@ -386,17 +429,20 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
 }
 
+/* For pushing the buttons to the right side */
 .taskStats #taskStats__all {
     margin-left: auto;
 }
 
-.taskStats>.smallFontStyles {
+/* Simple scale change transition for taskStat buttons */
+.taskStats > .smallFontStyles {
     -webkit-transition: all 180ms ease-in-out;
     -o-transition: all 180ms ease-in-out;
     transition: all 180ms ease-in-out;

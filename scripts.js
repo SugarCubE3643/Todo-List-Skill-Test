@@ -1,20 +1,33 @@
 const toDoListApp = (() => {
     
+    // Array which will contain all tasks
     const tasks = [];
-    const taskList = document.querySelector('.taskList');
-    const addTaskInput = document.querySelector('.inputField__input');
+
+    // Variables for HTML Elements 
+
+    // App container
     const appContainer = document.querySelector('.appContainer');
+
+    // Task container
+    const taskList = document.querySelector('.taskList');
+
+    // Input field
+    const addTaskInput = document.querySelector('.inputField__input');
+
+    // Task counter display
     const taskCounter = document.querySelector('.stat__tasksLeft');
+
+    // Task statistics buttons
     const allTasksButton = document.getElementById('taskStats__all');
     const incompleteTasksButton = document.getElementById('taskStats__incomplete');
     const completedTasksButton = document.getElementById('taskStats__completed');
 
 
-
+    // Variable for maintaining number of completed and incomplete tasks
     let incompleteTasksCount = 0;
     let completeTasksCount = 0;
 
-    
+    // Creates a new task with the given text
     function createTask(text){
         const task = {
             text: text,
@@ -24,6 +37,7 @@ const toDoListApp = (() => {
         return task;
     }
 
+    // Adds the task to the tasks array and adding the same to the DOM using another function
     function addTask(task) {
         if(task){
             tasks.push(task);            
@@ -35,6 +49,8 @@ const toDoListApp = (() => {
             ++incompleteTasksCount;
         }
     }
+
+    // Adds the given task to the DOM
     function addTaskToDOM(task){    
         const li = document.createElement('li');
         li.setAttribute('data-id', task.id);
@@ -47,6 +63,7 @@ const toDoListApp = (() => {
         taskList.append(li);
     }
 
+    // Rendering List based on which task stat option is selected
     function renderList(){
         if(allTasksButton.classList.contains('selected'))
         {
@@ -75,6 +92,7 @@ const toDoListApp = (() => {
         }
     }
 
+    // Updating the statistics in the DOM  based on the selected statistics option
     function updateStats(){
         if(allTasksButton.classList.contains('selected'))
         {
@@ -90,10 +108,14 @@ const toDoListApp = (() => {
         }        
     }
 
+    // Toggling the task as completed of incomplete using taskID
     function toggleCompleteTask(taskID){
+
+        // Searching for the task index from tasks using destructuring
         const taskIndex = tasks.findIndex(({id}) => id === taskID);
         const taskLabel = document.querySelector(`[for="${taskID}"]`);
 
+        // Updating task and statistics based on whether the task is done or not
         if(tasks[taskIndex].done){
             tasks[taskIndex].done = false;
             taskLabel.classList.remove('completed');
@@ -109,12 +131,16 @@ const toDoListApp = (() => {
             ++completeTasksCount;
         }
 
+        // If either incomplete or complete tasks is selected the task is removed removed from DOM 
         if(incompleteTasksButton.classList.contains('selected') || completedTasksButton.classList.contains('selected')){
             taskLabel.parentElement.remove();
         }
     }
 
+    // Deletes the task with the given taskID
     function deleteTask(taskID){
+        
+        // Searching for the task index from tasks using destructuring
         const taskIndex = tasks.findIndex(({id}) => id === taskID);
 
         if(tasks[taskIndex].done){
@@ -127,10 +153,15 @@ const toDoListApp = (() => {
             tasks.splice(taskIndex, 1);
         }
         const task = document.getElementById(taskID).parentElement;
+
+        // Removing the task from DOM
         task.remove();
     }
 
+    // Completes all tasks present on the DOM
     function completeAllTasks(){
+
+        // Completes all tasks when either all or incomplete tasks are selected 
         if(allTasksButton.classList.contains('selected') || incompleteTasksButton.classList.contains('selected'))
         {
             for (const task of taskList.children) {
@@ -144,12 +175,16 @@ const toDoListApp = (() => {
             }
         }
 
+        // Removes the tasks from DOM if incomplete tasks is selected
         if(incompleteTasksButton.classList.contains('selected')){
             taskList.innerHTML = '';
         }
     }
 
+    // Deletes all the completed tasks that are present on DOM
     function clearCompletedTasks(){
+
+        // Cheking if either all or completed task is selected as incomplete task doesn't contain completed tasks
         if(allTasksButton.classList.contains('selected') || completedTasksButton.classList.contains('selected'))
         {
             let i = 0; 
@@ -166,7 +201,10 @@ const toDoListApp = (() => {
         }
     }
     
+    // Handling all inputs 
     function handleInput (event){
+
+        // Enter key input or add button click input
         if((event.type === 'keyup' && event.key === 'Enter') || (event.type === 'click' && event.target.className === 'inputField__add')){
             const text = addTaskInput.value;
             if(text === ''){
@@ -177,6 +215,8 @@ const toDoListApp = (() => {
             addTask(task);
             updateStats();
         }else if(event.type === 'click'){
+
+            // Handling the rest of the events using if else ladder
             const target = event.target;
             if(target.classList.contains('taskOptions__completeAllTasks'))
             {
@@ -225,16 +265,18 @@ const toDoListApp = (() => {
         }
     }
 
+    // Initializes the app and adds event listeners
     function initialize(){
         addTaskInput.addEventListener('keyup', handleInput);
+
+        // Using event delegation for handling the click inputs 
         appContainer.addEventListener('click', handleInput);        
     }
     
     return {
         initializeApp: initialize,
-        // For testing about tasks
-        tasks:tasks
     }
 })();
 
+// Initializing the app
 toDoListApp.initializeApp();
