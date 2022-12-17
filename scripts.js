@@ -108,6 +108,10 @@ const toDoListApp = (() => {
             --incompleteTasksCount;
             ++completeTasksCount;
         }
+
+        if(incompleteTasksButton.classList.contains('selected') || completedTasksButton.classList.contains('selected')){
+            taskLabel.parentElement.remove();
+        }
     }
 
     function deleteTask(taskID){

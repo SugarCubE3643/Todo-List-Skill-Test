@@ -1,19 +1,20 @@
 /* CSS variables */
-:root{
+:root {
     --lightGreyBackground: rgb(228, 235, 245);
-    --lightGreyBorderColor1:rgb(200, 208, 231);
-    --white:rgb(255, 255, 255);
-    --placeholderColor:rgb(190, 201, 227);
-    --inputColor:rgb(92, 101, 122);
-    --featuresColor:rgb(161, 172, 198);
-    --baseColor:rgb(109, 93, 252);
-    --baseColorDark:rgb(91, 14, 235);
-    --selectedColor:rgb(4, 46, 152);
-    --completeAllHover:rgb(104, 201, 136);
+    --lightGreyBorderColor1: rgb(200, 208, 231);
+    --white: rgb(255, 255, 255);
+    --placeholderColor: rgb(190, 201, 227);
+    --inputColor: rgb(92, 101, 122);
+    --featuresColor: rgb(161, 172, 198);
+    --baseColor: rgb(109, 93, 252);
+    --baseColorDark: rgb(91, 14, 235);
+    --selectedColor: rgb(4, 46, 152);
+    --completeAllHover: rgb(104, 201, 136);
 }
 
 /* Some reasonable resets and changes to deafult css*/
-html{
+html {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 100%;
     background: var(--lightGreyBackground);
@@ -21,7 +22,8 @@ html{
 
 *,
 *::before,
-*::after{
+*::after {
+    -webkit-box-sizing: inherit;
     box-sizing: inherit;
     margin: 0;
     padding: 0;
@@ -36,7 +38,7 @@ li {
 }
 
 /* Removing default button styles and adding responsive padding */
-button{
+button {
     border: none;
     background: transparent;
     padding: 0.4em 0.8em;
@@ -44,41 +46,49 @@ button{
 
 
 /* Custom hr tag style according to the theme of the project */
-hr{ 
-    display: block; 
+hr {
+    display: block;
     height: 2px;
-    border: 0; 
-    
+    border: 0;
+
     border-top: 2px solid var(--lightGreyBorderColor1);
-    padding: 0; 
+    padding: 0;
 }
 
 /* Utilities */
 
 /* Making custom small font styles for buttons and text */
-.smallFontStyles{
+.smallFontStyles {
     font-size: 0.8rem;
     color: var(--featuresColor);
 }
 
 /* Styles for selected task statistic option */
-.selected{
+.selected {
     font-size: 0.85rem;
     color: var(--selectedColor);
 }
 
 /* Styles for the tasks which are marked completed  */
-.completed{
+.completed {
     color: var(--placeholderColor);
     text-decoration: line-through;
 }
 
 
 /* Body styles to adequately position the appContainer */
-body{
+body {
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
 
     display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 
     /* Padding will not go below 20px for small screen sizes */
@@ -86,7 +96,7 @@ body{
 }
 
 /* appContainer styles */
-.appContainer{
+.appContainer {
     /* Making responsive width */
     min-width: min(500px, 90vw);
     width: 60vw;
@@ -95,40 +105,52 @@ body{
     padding: 2rem 2rem 0.1px 2rem;
     border-radius: 16px;
 
+    -webkit-box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
+
     box-shadow: 0.8rem 0.8rem 1.4rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 1.8rem var(--white);
 }
 
 /* Input field styles */
 
 /* Styles for container of the input */
-.inputField{
+.inputField {
+    -webkit-box-shadow: inset 0.2rem 0.2rem 0.5rem var(--lightGreyBorderColor1), inset -0.2rem -0.2rem 0.5rem var(--white);
     box-shadow: inset 0.2rem 0.2rem 0.5rem var(--lightGreyBorderColor1), inset -0.2rem -0.2rem 0.5rem var(--white);
 
     border-radius: 8px;
     height: min(4rem, 10vw);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
 /* Styles to reset the default focused input styles as the parent container will have styles instead */
-.inputField__input:focus{
+.inputField__input:focus {
     outline: none;
     border: none;
+    -webkit-box-shadow: none;
     box-shadow: none;
 }
 
 
 /* Styling the parent container of input when it is focused */
-.inputField:has(>.inputField__input:focus){
+.inputField:has(>.inputField__input:focus) {
+    -webkit-box-shadow: 0.3rem 0.3rem 0.6rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 0.5rem var(--white);
     box-shadow: 0.3rem 0.3rem 0.6rem var(--lightGreyBorderColor1), -0.2rem -0.2rem 0.5rem var(--white);
 }
 
 /* Input box styles */
-.inputField__input{
+.inputField__input {
     background-color: transparent;
-    width:90%;
-    border:none;
+    width: 90%;
+    border: none;
     height: 100%;
     line-height: min(4rem, 10vw);
     font-size: min(1.6rem, 4vw);
@@ -137,7 +159,23 @@ body{
 
 
 /* Input placeholder styles */
-.inputField__input::placeholder{
+.inputField__input::-webkit-input-placeholder {
+    color: var(--placeholderColor);
+}
+
+.inputField__input::-moz-placeholder {
+    color: var(--placeholderColor);
+}
+
+.inputField__input:-ms-input-placeholder {
+    color: var(--placeholderColor);
+}
+
+.inputField__input::-ms-input-placeholder {
+    color: var(--placeholderColor);
+}
+
+.inputField__input::placeholder {
     color: var(--placeholderColor);
 }
 
@@ -146,146 +184,220 @@ body{
     height: 40%;
     margin: 0 16px;
 
+    -webkit-filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
+
     filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
 }
 
-.inputField__add{
+.inputField__add {
+    -webkit-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
 }
 
-.inputField__add:hover{
+.inputField__add:hover {
+    -webkit-transform: scale(1.14);
+    -ms-transform: scale(1.14);
     transform: scale(1.14);
     cursor: pointer;
 }
 
-.inputField__add:active{
+.inputField__add:active {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1);
 }
 
 /* Task options  */
-.taskOptions{
-    margin:14px 0;
+.taskOptions {
+    margin: 14px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
-.taskOptions button{
+.taskOptions button {
     padding: 0;
     text-align: center;
 }
 
-.taskOptions button:hover{
+.taskOptions button:hover {
     cursor: pointer;
 }
 
 /* complete All Tasks button styles */
-.taskOptions__completeAllTasks{
+.taskOptions__completeAllTasks {
+    -webkit-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
 }
 
 /* Hover state of complete all tasks button */
-.taskOptions__completeAllTasks:hover{
+.taskOptions__completeAllTasks:hover {
+    -webkit-transform: scale(1.12);
+    -ms-transform: scale(1.12);
     transform: scale(1.12);
     color: var(--completeAllHover);
 }
 
 /* Active state of complete all tasks button */
-.taskOptions__completeAllTasks:active{
+.taskOptions__completeAllTasks:active {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1);
 }
 
-.taskOptions__completeAllTasks img{
+.taskOptions__completeAllTasks img {
+    -webkit-filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
     filter: invert(67%) sepia(0%) saturate(43%) hue-rotate(138deg) brightness(101%) contrast(89%);
-    height:0.68rem;
-    margin:0 14px;
+    height: 0.68rem;
+    margin: 0 14px;
+    -webkit-transition: height 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
+    transition: height 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
+    -o-transition: height 300ms ease-in-out, filter 300ms ease-in-out;
     transition: height 300ms ease-in-out, filter 300ms ease-in-out;
+    transition: height 300ms ease-in-out, filter 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 }
 
-.taskOptions__completeAllTasks:hover img{
+.taskOptions__completeAllTasks:hover img {
+    -webkit-filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
     filter: invert(51%) sepia(50%) saturate(7490%) hue-rotate(98deg) brightness(103%) contrast(65%);
-    height:0.7rem;
-    margin:0 14px;
+    height: 0.7rem;
+    margin: 0 14px;
 }
 
 
 /* Task List styles */
-.taskListContainer{
+.taskListContainer {
     margin: 1.2rem 0;
 }
-.taskList{
+
+.taskList {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
-    gap:max(10px, 0.4em);
+    gap: max(10px, 0.4em);
 }
 
-.taskList li{
+.taskList li {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: max(10px, 0.4em);
-    height: min(3rem,7.5vw);
-    font-size: min(1.4rem,3.5vw);
+    height: min(3rem, 7.5vw);
+    font-size: min(1.4rem, 3.5vw);
 
     border-radius: 8px;
     padding: 0.2em 0.4em;
+    -webkit-box-shadow: 0.2rem 0.2rem 0.3rem var(--lightGreyBorderColor1), -0.1rem -0.1rem 0.2rem var(--white);
     box-shadow: 0.2rem 0.2rem 0.3rem var(--lightGreyBorderColor1), -0.1rem -0.1rem 0.2rem var(--white);
 }
 
-.taskList li:has( > .completed){
+.taskList li:has(> .completed) {
+    -webkit-box-shadow: none;
     box-shadow: none;
-}   
+}
 
 
-.taskList li input[type="checkbox"]{
+.taskList li input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
-    width: min(1.4rem,3.5vw);
-    height: min(1.4rem,3.5vw);
+    width: min(1.4rem, 3.5vw);
+    height: min(1.4rem, 3.5vw);
+    -webkit-box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
     box-shadow: inset 0.1rem 0.1rem 0.1rem var(--lightGreyBorderColor1), inset -0.1rem -0.1rem 0.1rem var(--white);
     border-radius: 6px;
+
+    display: -ms-grid;
 
     display: grid;
     place-content: center;
 }
 
-.taskList li input[type="checkbox"]::before{
+.taskList li input[type="checkbox"]::before {
     content: "";
-    height: min(0.8rem,2vw);
-    width: min(0.8rem,2vw);
+    height: min(0.8rem, 2vw);
+    width: min(0.8rem, 2vw);
+
+    -webkit-clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
     transform: scale(0);
+    -webkit-transition: -webkit-transform 110ms ease-in-out;
+    transition: -webkit-transform 110ms ease-in-out;
+    -o-transition: transform 110ms ease-in-out;
     transition: transform 110ms ease-in-out;
+    transition: transform 110ms ease-in-out, -webkit-transform 110ms ease-in-out;
     background-color: var(--baseColor);
 }
 
 .taskList li input[type="checkbox"]:checked::before {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1);
 }
 
 
-.taskList li img{
+.taskList li img {
     visibility: hidden;
+    -webkit-filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
     filter: invert(38%) sepia(29%) saturate(3906%) hue-rotate(228deg) brightness(95%) contrast(108%);
-} 
+}
 
-.taskList li:hover img{
+.taskList li:hover img {
     visibility: visible;
     cursor: pointer;
-} 
+}
 
-.taskList li img{
+.taskList li img {
     height: 70%;
     margin-left: auto;
 }
 
 
 /* Task Stat styles */
-.taskStats{
-    margin:10px 0;
+.taskStats {
+    margin: 10px 0;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
 }
 
-.taskStats > .smallFontStyles{
+.taskStats #taskStats__all {
+    margin-left: auto;
+}
+
+.taskStats>.smallFontStyles {
+    -webkit-transition: all 180ms ease-in-out;
+    -o-transition: all 180ms ease-in-out;
     transition: all 180ms ease-in-out;
 }
