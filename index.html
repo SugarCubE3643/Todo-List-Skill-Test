@@ -7,6 +7,9 @@
 
     <!-- Website title -->
     <title>Todo List</title>
+    
+    <!-- Website icon-->
+    <link rel="icon" type="image/x-icon" href="./images/websiteIcon.png">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./styles.css">
@@ -34,7 +37,10 @@
             <hr>
     
             <!-- Tasks list section -->
-            <section class="taskList">
+            <section class="taskListContainer">
+                <ul class="taskList">
+                    <!-- Tasks will be added here -->
+                </ul>
             </section>
             
             <hr>
@@ -45,11 +51,15 @@
                     <span class="stat__tasksLeft selected">0</span>
                     <span >tasks left</span>
                 </span>
-                <button class="taskStats__all smallFontStyles selected">All</button>
-                <button class="taskStats__incomplete smallFontStyles">Incomplete</button>
-                <button class="taskStats__completed smallFontStyles">Completed</button>
+                <button id="taskStats__all" class=" smallFontStyles selected">All</button>
+                <button id="taskStats__incomplete" class=" smallFontStyles">Incomplete</button>
+                <button id="taskStats__completed" class=" smallFontStyles">Completed</button>
             </section>
         </div>
     </div>    
+
+
+    <!-- Scripts -->
+    <script src="./scripts.js"></script>
 </body>
 </html>

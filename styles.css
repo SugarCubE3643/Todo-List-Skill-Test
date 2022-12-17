@@ -11,9 +11,11 @@ html{
     box-sizing: inherit;
     margin: 0;
     padding: 0;
+
+    font-family: sans-serif;
 }
 
-ol, ul {
+li {
     list-style: none;
 }
 
@@ -21,6 +23,20 @@ button{
     border: none;
     background: transparent;
     padding: 0.4em 0.8em;
+}
+
+/* input[type="checkbox"] {
+    appearance: none;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+} */
+
+hr{ 
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid rgb(167, 167, 167);
+    padding: 0; 
 }
 
 /* Body styles to properly positionthe appContainer */
@@ -32,7 +48,6 @@ body{
     display: flex;
     align-items: flex-start;
     justify-content: center;
-
 
     /* Add variable padding */
     /*  */
@@ -138,6 +153,29 @@ body{
     height:0.7rem;
     margin:0 14px;
 }
+
+
+/* Task List styles */
+.taskListContainer{
+    margin: 2rem 0;
+}
+
+.taskList li{
+    height: 3rem;
+    border: solid 1px black;
+}
+
+.taskList li input[type="checkbox"]{
+    
+}
+.taskList li img{
+    height: 40%;
+    margin: 0 16px;
+}
+
+
+/* Task Stat styles */
+
 
 
 /* Utilities (Adding at bottom to ensure they override other styles)*/
