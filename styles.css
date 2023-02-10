@@ -118,7 +118,7 @@ body {
     box-shadow: inset 0.2rem 0.2rem 0.5rem var(--lightGreyBorderColor1), inset -0.2rem -0.2rem 0.5rem var(--white);
 
     border-radius: 8px;
-    height: min(4rem, 10vw);
+    height: 4rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -152,8 +152,8 @@ body {
     width: 90%;
     border: none;
     height: 100%;
-    line-height: min(4rem, 10vw);
-    font-size: min(1.6rem, 4vw);
+    line-height: 1.6rem;
+    font-size: 1.6rem;
     color: var(--inputColor);
 }
 
@@ -446,4 +446,21 @@ body {
     -webkit-transition: all 180ms ease-in-out;
     -o-transition: all 180ms ease-in-out;
     transition: all 180ms ease-in-out;
+}
+
+@media (max-width: 600px){
+    .appContainer {
+        padding: 1rem 1rem 0.1px 1rem;
+        border-radius: 8px;
+    }
+
+    .inputField {
+        height: 3rem;
+        border-radius: 4px;
+    }
+
+    .inputField__input {
+        line-height: 1.4rem;
+        font-size: 1.4rem;
+    }
 }
