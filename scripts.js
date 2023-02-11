@@ -164,14 +164,26 @@ const toDoListApp = (() => {
         // Completes all tasks when either all or incomplete tasks are selected 
         if(allTasksButton.classList.contains('selected') || incompleteTasksButton.classList.contains('selected'))
         {
-            for (const task of taskList.children) {
-                const taskID = task.dataset.id;
+            const listLength = taskList.children.length;
+            for(i = 0; i < listLength; ++i){
+                // Checking if incomplete is selected so we take every first child instead of 
+                // taking the next child as the previous child will be removed from DOM and 
+                // the supposed next child will become the first child in case of incomplete
+                // task list
+                // otherwise we take index as i
+                const index = incompleteTasksButton.classList.contains('selected') ? 0 : i;
+
+                // finding data attribute id of DOM element of current task
+                const taskID = taskList.children[index].dataset.id;
+                // storing the reference of current task in DOM
+                const taskDOM = document.getElementById(taskID);
+                // finding index of current task in tasks array
                 const taskIndex = tasks.findIndex(({id}) => id === taskID);
-    
+
                 if(!tasks[taskIndex].done){
                     toggleCompleteTask(taskID);
-                    document.getElementById(taskID).checked = true;
-                }                
+                    taskDOM.checked = true;
+                }
             }
         }
 
